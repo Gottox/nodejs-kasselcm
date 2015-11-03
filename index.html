@@ -103,50 +103,93 @@
 				<section>
 					<h2>:: index</h2>
 					<ul>
-						<li>Anatomy of a Linux System</li>
-						<li>What's Void Linux?</li>
-						<li>Package management</li>
-						<li>Build system</li>
+						<li>Was ist Void Linux?</li>
+						<li>Besonderheiten</li>
+						<li>Packet Management</li>
+						<li>Build System</li>
 					</ul>
 				</section>
 
 				<section>
-					<center class="invader">hhh</center>
+					<center class="invader">h</center>
 					<ul>
-						<li class="fragment">Wer benutzt Linux?</li>
-						<li class="fragment">... BSD?</li>
-						<li class="fragment">... MacOS?</li>
-						<li class="fragment">Wer kennt Void? <span class=fragment>außer von mir?</span></li>
+						<li class="fragment">Linux? <span class=fragment>BSD?</span> <span class=fragment>MacOS?</span> <span class=fragment>Windows?</span></li>
+						<li class="fragment">VoidLinux?</li>
 					</ul>
-				</section>
-
-				<section>
-					<section>
-						<center class="invader">d</center>
-						<h1>Anatomy of a Linux System</h1>
-					</section>
-
-					<section>
-						<h2>:: Boot</h2>
-					</section>
-
-					<section>
-						<h2>:: Filesystem</h2>
-					</section>
-
-					<section>
-						<h2>:: Filesystem</h2>
-					</section>
 				</section>
 
 				<section>
 					<center class="invader">s</center>
 					<h1>What's Void Linux?</h1>
+					<span style="color: red;">"Not a fork!" "Rolling release" "runit" "LibreSSL" "musl-libc"</span>
+				</section>
+
+				<section>
+					<h2>:: Not a fork!</h2>
+					<ul>
+						<li class="fragment">erste Commits in 2008</li>
+						<li class="fragment">über 6000 Pakete</li>
+						<li class="fragment">Portabel!
+							<ul>
+								<li class="fragment">x86, x86_64, ARMv6, ARMv7 <span class="fragment">(MIPS, aarch64)</span></li>
+								<li class="fragment">glibc und musl</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="images/Musl_libc.png" style="background:transparent; border:none; float:none !important;"/>
+					<br>
+					<ul style="clear:both !important;">
+						<li class="fragment">Standard Library</li>
+						<li class="fragment">ersatz für glibc</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>:: runit</h2>
+					<ul>
+						<li class="fragment">ersetzte systemd Ende 2014</li>
+						<li class="fragment">Usage:
+							<ul>
+								<li>enable:&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ccc">ln -s /etc/sv/XXX /var/service</span></li>
+								<li>disable:&nbsp;&nbsp;&nbsp;<span style="color: #ccc">rm /var/service/XXX</span></li>
+								<li>starting:&nbsp;&nbsp;<span style="color: #ccc">sv start XXX</span></li>
+								<li>stopping:&nbsp;&nbsp;<span style="color: #ccc">sv stop XXX</span></li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="images/libressl.png" style="background:transparent; border:none; float:left;"/>
+					<br>
+					<h2>:: LibreSSL</h2>
+					<br style="clear:both;">
+					<ul>
+						<li class="fragment">fork von OpenSSL</li>
+						<li class="fragment">nach Heartbleed</li>
+					</ul>
 				</section>
 
 				<section>
 					<center class="invader">e</center>
-					<h1>Package Management</h1>
+					<h1>Paket Management</h1>
+				</section>
+
+				<section>
+					<h2>:: xbps</h2>
+					<ul>
+						<li>wurde als Ersatz für pkgsrc auf NetBSD geplant</li>
+						<li>Auf Linux portiert</li>
+						<li>Wurde Standard auf Void</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>:: xbps</h2>
+					<div class="terminaljs" data-focus=1 data-rows=10 data-columns=49 data-exec="cd ~/demo; clear"></div>
 				</section>
 
 				<section>
@@ -155,7 +198,51 @@
 				</section>
 
 				<section>
-					<div class="terminaljs" data-rows=12 data-columns=49 data-exec="cd ~; clear"></div>
+<pre style="color:#555">$ curl -L http://tox.ninja/count_packages | sh | column -t</pre>
+<pre>x86_64:       6064
+x86_64-musl:  5252
+i686:         6049
+armv6l:       4851
+armv6l-musl:  4159
+armv7l:       4882
+armv7l-musl:  4166
+</pre>
+				</section>
+
+				<section>
+					<h2>:: xbps-src</h2>
+					<ul>
+						<li>basiert bash script</li>
+						<li>An *BSD-Ports angelehnte Paketdefinitionen</li>
+						<li>Cross-Compiling Magie</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>:: xbps-src</h2>
+					<div style="font-size:smaller;" class="terminaljs" data-focus=1 data-rows=14 data-columns=52 data-exec="cd ~/src/void-packages/srcpkgs/zlib; clear; vi +0 template"></div>
+				</section>
+
+				<section>
+					<h2>:: Boot</h2>
+					<div style="color:red" class="fragment">Void</div>
+					<pre style="font-size:x-large">
+                             <span style="color:red" class="fragment">Grub2</span>      <span style="color:red" class="fragment">Vanilla Linux</span>
+            +--------+    +----------+    +------+
+            |BIOS/EFI| -> |BootLoader| -> |Kernel|
+            +--------+    +----------+    +------+
+                 _____________________________|
+                V
+             +----+ ,--> Gnome
+             |Init| ---> httpd
+             +----+ `--> ...
+             <span style="color:red" class="fragment">runit</span>
+</pre>
+				</section>
+
+
+				<section>
+					<div class="terminaljs" data-focus=1 data-rows=12 data-columns=49 data-exec="cd ~; clear"></div>
 				</section>
 			</div>
 		</div>
@@ -164,7 +251,6 @@
 		<script src="js/reveal.js"></script>
 
 		<script>
-
 			// Full list of configuration options available at:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
@@ -186,7 +272,7 @@
 				]
 			});
 			function typeCode(e) {
-				var n, p, walk=document.createTreeWalker(e, NodeFilter.SHOW_TEXT,null,false);
+				var chars, t, time = 30, n, p, walk=document.createTreeWalker(e, NodeFilter.SHOW_TEXT,null,false);
 				var elements = [], i = 0, j = 0;
 				while(n=walk.nextNode()) {
 					if(n.nodeValue.trim() === "") continue;
@@ -197,11 +283,17 @@
 							break;
 					}
 					if(p) continue;
-					elements.push({n: n, t: n.nodeValue, o: n.parentNode.style.opacity});
-					n.nodeValue = "";
+					t=n.nodeValue;
+					elements.push({n: n, t: t, o: n.parentNode.style.opacity});
+					n.nodeValue = "_" + String.fromCharCode(160).repeat(t.length-1);
 				}
+				var chars = 0;
 				for(i = 0; i < elements.length; i++) {
 					elements[i].n.parentNode.style.opacity = 0;
+					chars += elements[i].t.length;
+				}
+				if(chars * time > 3000) {
+					time = 3000 / chars;
 				}
 				i=0
 				if(elements.length == 0)
@@ -212,20 +304,20 @@
 						elements[i].n.nodeValue = elements[i].t;
 						i++;
 						j=0
-						console.log(j);
 					}
 					if(elements[i] === undefined)
 						return clearInterval(interval);
 					j += elements[i].t.substr(j).match(/^[\t ]*/)[0].length;
 					elements[i].n.nodeValue = elements[i].t.substr(0, j) + "_";
 					j++;
-				}, 30); 
+				}, time); 
 			}
 			Reveal.addEventListener( 'slidechanged', function( event ) {
 				event.currentSlide.focus();
 				typeCode(event.currentSlide);
-				if(event.currentSlide.querySelector(".terminaljs"))
-					event.currentSlide.querySelector(".terminaljs").focus();
+				var term = event.currentSlide.querySelector(".terminaljs");
+				if(term && term.dataset.focus)
+					term.focus();
 			} );
 			Reveal.addEventListener( 'fragmentshown', function( event ) {
 				typeCode(event.fragment);
@@ -237,22 +329,23 @@
 var containers = document.getElementsByClassName('terminaljs'),
 	socket = io('http://127.0.0.1:3000/pty'), term, stream;
 for(var i = 0; i < containers.length; i++) {
+		// setting tabindex makes the element focusable
+		containers[i].tabindex = 0;
 
-	// setting tabindex makes the element focusable
-	containers[i].tabindex = 0;
+		// use data-* attributes to configure terminal and child_pty
+		term = new Terminal(containers[i].dataset);
 
-	// use data-* attributes to configure terminal and child_pty
-	term = new Terminal(containers[i].dataset);
+		// Create bidirectional stream
+		stream = ss.createStream({decodeStrings: false, encoding: 'utf-8'});
 
-	// Create bidirectional stream
-	stream = ss.createStream({decodeStrings: false, encoding: 'utf-8'});
+		if(containers[i].dataset.exec)
+			stream.write(containers[i].dataset.exec + "\n");
 
-	// Send stream and options to the server
-	ss(socket).emit('new', stream, containers[i].dataset);
+		// Send stream and options to the server
+		ss(socket).emit('new', stream, containers[i].dataset);
 
-	stream.write(containers[i].dataset.exec + "\n");
-	// Connect everything up
-	stream.pipe(term).dom(containers[i]).pipe(stream);
+		// Connect everything up
+		stream.pipe(term).dom(containers[i]).pipe(stream);
 }
 		</script>
 	</body>
