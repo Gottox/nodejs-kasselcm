@@ -39,7 +39,7 @@
 /* The animation code */
 @keyframes cathode {
 	0% {background-position: 0% -100%; }
-	100% {background-position: 0% 200%; }
+	100% {background-position: 0% 600%; }
 }
 @keyframes cursor {
 	to { visibility: hidden; }
@@ -51,6 +51,10 @@
     font-style: normal;
 }
 
+@keyframes blink {
+	90% { opacity:0.0; }
+	100% { opacity:1; }
+}
 
 .cathode {
 	background-image: url(images/kathodenstrahlstoerung.png);
@@ -64,7 +68,7 @@
 	bottom:0;
 	right:0;
 	opacity:0.1;
-	animation: cathode 30s infinite linear;
+	animation: cathode 90s infinite linear;
 }
 
 .cursor {
@@ -75,6 +79,11 @@
 	font-family:invaders !important;
 	font-size:200px !important;
 	color:red !important;
+}
+.gameover {
+	color:#0f0 !important;
+	text-shadow:0 0 10px;
+	animation: blink 2s infinite ease-in-out;
 }
 	</style>
 	</head>
@@ -98,6 +107,7 @@
                <span>OO       OO</span>
                  <span>OOOOOOO</span></pre>
 					<div>VoidLinux</div>
+					<div style="color:gray">Enno Boland</div>
 				</section>
 
 				<section>
@@ -113,7 +123,7 @@
 				<section>
 					<center class="invader">h</center>
 					<ul>
-						<li class="fragment">Linux? <span class=fragment>BSD?</span> <span class=fragment>MacOS?</span> <span class=fragment>Windows?</span></li>
+						<li class="fragment">Windows? <span class=fragment>MacOS?</span> <span class=fragment>Linux?</span> <span class=fragment>BSD?</span></li>
 						<li class="fragment">VoidLinux?</li>
 					</ul>
 				</section>
@@ -139,18 +149,34 @@
 				</section>
 
 				<section>
+					<h2>:: Rolling release</h2>
+					<ol>
+						<li class="fragment">Autor macht Änderung</li>
+						<li class="fragment">push void-packages auf Github</li>
+						<li class="fragment">build.voidlinux.eu baut Paket</li>
+						<li class="fragment">signiert</li>
+						<li class="fragment">per http veröffentlicht</li>
+					</ol>
+				</section>
+
+				<section>
 					<img src="images/Musl_libc.png" style="background:transparent; border:none; float:none !important;"/>
 					<br>
+					<div>Standard Library</div>
 					<ul style="clear:both !important;">
-						<li class="fragment">Standard Library</li>
-						<li class="fragment">ersatz für glibc</li>
+						<li class="fragment">Ersatz für glibc</li>
+							<ul>
+								<li class="fragment">printf(), str{cpy,str,len,...}(), fopen(), memcpy(), ...</li>
+							</ul>
+						</li>
+						<li class="fragment">POSIX</li>
 					</ul>
 				</section>
 
 				<section>
 					<h2>:: runit</h2>
 					<ul>
-						<li class="fragment">ersetzte systemd Ende 2014</li>
+						<li class="fragment">ersetzte systemd 2014</li>
 						<li class="fragment">Usage:
 							<ul>
 								<li>enable:&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ccc">ln -s /etc/sv/XXX /var/service</span></li>
@@ -163,9 +189,9 @@
 				</section>
 
 				<section>
-					<img src="images/libressl.png" style="background:transparent; border:none; float:left;"/>
+					<img src="images/libressl.png" style="background:transparent; border:none; float:left; box-shadow:none"/>
 					<br>
-					<h2>:: LibreSSL</h2>
+					<h2> LibreSSL</h2>
 					<br style="clear:both;">
 					<ul>
 						<li class="fragment">fork von OpenSSL</li>
@@ -181,9 +207,25 @@
 				<section>
 					<h2>:: xbps</h2>
 					<ul>
-						<li>wurde als Ersatz für pkgsrc auf NetBSD geplant</li>
+						<li>als Ersatz für pkgsrc auf NetBSD geplant</li>
 						<li>Auf Linux portiert</li>
 						<li>Wurde Standard auf Void</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>:: xbps</h2>
+					<ul>
+						<li>C</li>
+						<li>~30000 Zeilen</li>
+						<li>Paketsignierung mit libressl</li>
+						<li>Shared Object Version Tracking <span class="fragment">- Bsp:</span>
+							<ul>
+								<li class="fragment">evince benutzt libpoppler.so.55</l- i>
+								<li class="fragment">Update für poppler mit libpoppler.so.56</li>
+								<li class="fragment">schlägt fehl!</li>
+							</ul>
+						</li>
 					</ul>
 				</section>
 
@@ -198,32 +240,42 @@
 				</section>
 
 				<section>
-<pre style="color:#555">$ curl -L http://tox.ninja/count_packages | sh | column -t</pre>
+<pre style="color:#ccc">$ curl -L http://tox.ninja/count_packages | sh | column -t</pre>
 <pre>x86_64:       6064
 x86_64-musl:  5252
 i686:         6049
-armv6l:       4851
-armv6l-musl:  4159
-armv7l:       4882
-armv7l-musl:  4166
+armv6l:       4851 <span style="color:#ccc">&lt;--- cross compiled </span>
+armv6l-musl:  4159 <span style="color:#ccc">&lt;----' | |</span>
+armv7l:       4882 <span style="color:#ccc">&lt;------' |  </span>
+armv7l-musl:  4166 <span style="color:#ccc">&lt;--------'  </span>
 </pre>
 				</section>
 
 				<section>
 					<h2>:: xbps-src</h2>
 					<ul>
-						<li>basiert bash script</li>
 						<li>An *BSD-Ports angelehnte Paketdefinitionen</li>
 						<li>Cross-Compiling Magie</li>
+						<li>Upstream Version Checking</li>
 					</ul>
 				</section>
 
 				<section>
 					<h2>:: xbps-src</h2>
-					<div style="font-size:smaller;" class="terminaljs" data-focus=1 data-rows=14 data-columns=52 data-exec="cd ~/src/void-packages/srcpkgs/zlib; clear; vi +0 template"></div>
+					<ul>
+						<li>Bash</li>
+						<li>7882 Zeilen Code</li>
+					</ul>
 				</section>
 
 				<section>
+					<h2>:: xbps-src</h2>
+					<div style="font-size:smaller;" class="terminaljs" data-focus=1 data-rows=14 data-columns=52 data-exec="cd ~/src/void-packages/srcpkgs/pwgen; clear; vi +0 template">
+						<div style="font-size:smaller;" class="terminaljs" data-focus="1" data-rows="14" data-columns="52" data-exec="cd ~/src/void-packages/srcpkgs/pwgen; clear; vi +0 template" tabindex="0"><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="color:#06989a;font-weight:bold;background:#00ff00;color:#ffffff;">#</span><span style="color:#06989a;font-weight:bold;">&nbsp;Template&nbsp;file&nbsp;for&nbsp;'pwgen'</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">pkgname=pwgen</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">version=2.07</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">revision=2</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">build_style=gnu-configure</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">short_desc=</span><span style="color:#75507b;font-weight:bold;">"Password&nbsp;Generator"</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">maintainer=</span><span style="color:#75507b;font-weight:bold;">"Eivind&nbsp;Uggedal&nbsp;&lt;eivind@uggedal.com&gt;"</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">license=</span><span style="color:#75507b;font-weight:bold;">"GPL-2"</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">homepage=</span><span style="color:#75507b;font-weight:bold;">"http://pwgen.sourceforge.net"</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">distfiles=</span><span style="color:#75507b;font-weight:bold;">"${SOURCEFORGE_SITE}/${pkgname}/${pkgname}</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="color:#75507b;font-weight:bold;">-${version}.tar.gz"</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">checksum=eb74593f58296c21c71cd07933e070492e9222b79ce</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">df81d1a02ce09c0e11556</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">&nbsp;</span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="">1,1</span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="">All</span><br></div><div style="visibility:hidden;"><div style="line-height:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></div></div>
+					</div>
+				</section>
+
+<!--				<section>
 					<h2>:: Boot</h2>
 					<div style="color:red" class="fragment">Void</div>
 					<pre style="font-size:x-large">
@@ -233,13 +285,38 @@ armv7l-musl:  4166
             +--------+    +----------+    +------+
                  _____________________________|
                 V
-             +----+ ,--> Gnome
-             |Init| ---> httpd
-             +----+ `--> ...
+             +----+ ,--&gt; Gnome
+             |Init| ---&gt; httpd
+             +----+ `--&gt; ...
              <span style="color:red" class="fragment">runit</span>
 </pre>
+          </section>-->
+
+				<section>
+					<h2>:: Summary</h2>
+					<ul>
+						<li class="fragment">system
+							<ul>
+								<li class="fragment">optional mit musl</li>
+								<li class="fragment">libressl</li>
+								<li class="fragment">runit</li>
+							</ul>
+						</li>
+						<li class="fragment">xbps Paketmanager</li>
+						<li class="fragment">xbps-src
+							<ul>
+								<li class="fragment">pkgsrc ähnliche Syntax</li>
+								<li class="fragment">cross compiling</li>
+							</ul>
+						</li>
+					</ul>
 				</section>
 
+				<section data-notype="1">
+					<h1 class="gameover">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GAME Over</h1>
+					<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Insert Coin</h2>
+					<div class="fragment">Fragen?</div>
+				</section>
 
 				<section>
 					<div class="terminaljs" data-focus=1 data-rows=12 data-columns=49 data-exec="cd ~; clear"></div>
@@ -285,7 +362,7 @@ armv7l-musl:  4166
 					if(p) continue;
 					t=n.nodeValue;
 					elements.push({n: n, t: t, o: n.parentNode.style.opacity});
-					n.nodeValue = "_" + String.fromCharCode(160).repeat(t.length-1);
+					n.nodeValue = "";
 				}
 				var chars = 0;
 				for(i = 0; i < elements.length; i++) {
