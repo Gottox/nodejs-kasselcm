@@ -137,6 +137,7 @@
 				<section>
 					<h2>:: Not a fork!</h2>
 					<ul>
+						<li class="fragment">basiert nicht auf anderer Distribution</li>
 						<li class="fragment">erste Commits in 2008</li>
 						<li class="fragment">über 6000 Pakete</li>
 						<li class="fragment">Portabel!
@@ -152,18 +153,19 @@
 					<h2>:: Rolling release</h2>
 					<ol>
 						<li class="fragment">Autor macht Änderung</li>
-						<li class="fragment">push void-packages auf Github</li>
+						<li class="fragment">push void-packages auf GitHub</li>
 						<li class="fragment">build.voidlinux.eu baut Paket</li>
 						<li class="fragment">signiert</li>
-						<li class="fragment">per http veröffentlicht</li>
+						<li class="fragment">auf http veröffentlicht</li>
 					</ol>
 				</section>
 
 				<section>
 					<img src="images/Musl_libc.png" style="background:transparent; border:none; float:none !important;"/>
-					<br>
+					<br style="clear:both !important;">
+					<img src="images/fixingmusl.png" style="background:transparent; border:none; float:none !important;float:right !important;" width=600>
 					<div>Standard Library</div>
-					<ul style="clear:both !important;">
+					<ul>
 						<li class="fragment">Ersatz für glibc</li>
 							<ul>
 								<li class="fragment">printf(), str{cpy,str,len,...}(), fopen(), memcpy(), ...</li>
@@ -195,7 +197,8 @@
 					<br style="clear:both;">
 					<ul>
 						<li class="fragment">fork von OpenSSL</li>
-						<li class="fragment">nach Heartbleed</li>
+						<li class="fragment">ursprünglich für OpenBSD</li>
+						<li class="fragment">portiert auf Linux</li>
 					</ul>
 				</section>
 
@@ -240,8 +243,8 @@
 				</section>
 
 				<section>
-<pre style="color:#ccc">$ curl -L http://tox.ninja/count_packages | sh | column -t</pre>
-<pre>x86_64:       6064
+<pre style="color:#ccc; border:none; box-shadow:none">$ curl -L http://tox.ninja/count_packages | sh | column -t</pre>
+<pre style="border:none; box-shadow:none;">x86_64:       6064
 x86_64-musl:  5252
 i686:         6049
 armv6l:       4851 <span style="color:#ccc">&lt;--- cross compiled </span>
@@ -271,8 +274,7 @@ armv7l-musl:  4166 <span style="color:#ccc">&lt;--------'  </span>
 				<section>
 					<h2>:: xbps-src</h2>
 					<div style="font-size:smaller;" class="terminaljs" data-focus=1 data-rows=14 data-columns=52 data-exec="cd ~/src/void-packages/srcpkgs/pwgen; clear; vi +0 template">
-						<div style="font-size:smaller;" class="terminaljs" data-focus="1" data-rows="14" data-columns="52" data-exec="cd ~/src/void-packages/srcpkgs/pwgen; clear; vi +0 template" tabindex="0"><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="color:#06989a;font-weight:bold;background:#00ff00;color:#ffffff;">#</span><span style="color:#06989a;font-weight:bold;">&nbsp;Template&nbsp;file&nbsp;for&nbsp;'pwgen'</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">pkgname=pwgen</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">version=2.07</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">revision=2</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">build_style=gnu-configure</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">short_desc=</span><span style="color:#75507b;font-weight:bold;">"Password&nbsp;Generator"</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">maintainer=</span><span style="color:#75507b;font-weight:bold;">"Eivind&nbsp;Uggedal&nbsp;&lt;eivind@uggedal.com&gt;"</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">license=</span><span style="color:#75507b;font-weight:bold;">"GPL-2"</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">homepage=</span><span style="color:#75507b;font-weight:bold;">"http://pwgen.sourceforge.net"</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">distfiles=</span><span style="color:#75507b;font-weight:bold;">"${SOURCEFORGE_SITE}/${pkgname}/${pkgname}</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="color:#75507b;font-weight:bold;">-${version}.tar.gz"</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">checksum=eb74593f58296c21c71cd07933e070492e9222b79ce</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">df81d1a02ce09c0e11556</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">&nbsp;</span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="">1,1</span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="">All</span><br></div><div style="visibility:hidden;"><div style="line-height:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></div></div>
-					</div>
+						<div style="white-space: nowrap;overflow:hidden;"><span></span><span style="color:#06989a;font-weight:bold;background:#00ff00;color:#ffffff;">#</span><span style="color:#06989a;font-weight:bold;">&nbsp;Template&nbsp;file&nbsp;for&nbsp;'pwgen'</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">pkgname=pwgen</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">version=2.07</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">revision=2</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">build_style=gnu-configure</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">short_desc=</span><span style="color:#75507b;font-weight:bold;">"Password&nbsp;Generator"</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">maintainer=</span><span style="color:#75507b;font-weight:bold;">"Eivind&nbsp;Uggedal&nbsp;&lt;eivind@uggedal.com&gt;"</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">license=</span><span style="color:#75507b;font-weight:bold;">"GPL-2"</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">homepage=</span><span style="color:#75507b;font-weight:bold;">"http://pwgen.sourceforge.net"</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">distfiles=</span><span style="color:#75507b;font-weight:bold;">"${SOURCEFORGE_SITE}/${pkgname}/${pkgname}</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="color:#75507b;font-weight:bold;">-${version}.tar.gz"</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">checksum=eb74593f58296c21c71cd07933e070492e9222b79ce</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">df81d1a02ce09c0e11556</span><br></div><div style="white-space: nowrap;overflow:hidden;"><span></span><span style="">&nbsp;</span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="">1,1</span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="">All</span><br></div><div style="visibility:hidden;"><div style="line-height:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></div></div>
 				</section>
 
 <!--				<section>
