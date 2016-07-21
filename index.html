@@ -15,11 +15,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/theme/blood.css" id="theme">
 
 		<!-- For syntax highlighting
-		<link rel="stylesheet" href="lib/css/zenburn.css">
 		 -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
 		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
 		<script>
 			if( window.location.search.match( /print-pdf/gi ) ) {
@@ -30,11 +30,18 @@
 				document.getElementsByTagName( 'head' )[0].appendChild( link );
 			}
 		</script>
+		<script src="http://127.0.0.1:3000/socket.io/socket.io.js"></script>
+		<script src="http://127.0.0.1:3000/terminal.js"></script>
+		<script src="http://127.0.0.1:3000/socket.io-stream.js"></script>
+
 		<style>
+			body {
+				background: rgb(30,30,30);
+			}
 			pre {
 				box-shadow: none !important;
 			}
-			.terminal {
+			.terminaljs, iframe.emulator{
 				backface-visibility: hidden !important;
 				perspective: 1000 !important;
 				font-family: Courier New !important;
@@ -44,37 +51,16 @@
 				padding:5px !important;
 				border-radius:10px;
 				border:4px solid gray !important;
+				width:auto !important;
+				font-size: 16pt !important;
 			}
-			.terminal * {
+			.terminaljs * {
 				font-weight: normal !important;
 			}
 		</style>
 
-		<!--<script src="http://127.0.0.1:8000/socket.io/socket.io.js"></script>
-		<script src="http://127.0.0.1:8001/terminal.js"></script>-->
-		<script>
-			/*window.onload = function() {
-				var terms = document.getElementsByClassName("terminal");
-				var socket;
-				for(var i = 0; i < terms.length; i++) {
-					socket = io.connect("http://127.0.0.1:8001/"+i);
-					var content = terms[i].textContent;
-					var terminal = new Terminal(
-						44, 14,
-						terms[i],
-						socket
-					);
-					terminal.source.write(content);
-				}
-
-				var socket = io.connect('http://127.0.0.1:8000');
-				socket.on('address', function(addr) {
-					var e = document.getElementsByClassName("addrc");
-					for(var i = 0; i < e.length; i++)
-						e[i].innerHTML = addr;
-				});
-			}*/
-		</script>
+		<script src="http://127.0.0.1:3000/socket.io/socket.io.js"></script>
+		<script src="http://127.0.0.1:3000/terminal.js"></script>
 
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
@@ -87,352 +73,225 @@
 
 			<div class="slides">
 				<section data-transition="linear" data-background="#000000" data-background-transition="slide">
-					<img src="img/praemandatum.png" style="background:transparent; border:none; box-shadow:none">
-					<p>Enno Boland</p>
+					<h2>Enno Boland</h2>
 				</section>
+
+				<!--<section data-transition="linear" data-background="./generations.jpg" data-background-transition="slide">-->
+				<section data-background="./generations.jpg" data-background-transition="slide">
+					<h1>Pebble</h1>
+				</section>
+
+				<section>
+					<h2>Pebble</h2>
+					<ul>
+						<li class="fragment">Geschichte</li>
+						<li class="fragment">Installation</li>
+						<li class="fragment">SDK</li>
+						<li class="fragment"><code>Code.</code></li>
+					</ul>
+				</section>
+
 				<section>
 					<section>
-						<img src="img/node.svg" style="background:transparent; border:none; box-shadow:none">
+						<h1>Geschichte</h1>
 					</section>
 					<section>
-						<h2>Erfahrungen mit...?</h2>
+						<h2>InPulse</h2>
+						<img src="inpulse.jpg" width=300 style="float:right">
 						<ul>
-							<li class="fragment highlight-current-blue">... PHP, Ruby, Python?</li>
-							<li class="fragment highlight-current-blue">... Javascript?</li>
-							<li class="fragment highlight-current-blue">... Node.js?</li>
+							<li class="fragment">2008</li>
+							<li class="fragment">OLED</li>
+							<li class="fragment">Blackberry only</li>
+							<li class="fragment">Nur eine Taste</li>
 						</ul>
 					</section>
-					<section data-markdown>
-						Agenda
-						------
 
-						* Javascript
-						* Node.js Basics
-						* Live Coding \o/
-						* NPM
+					<section>
+						<h2>Pebble</h2>
+						<ul>
+							<li class="fragment">2012 gestartet; 2013 Auslieferung</li>
+							<li class="fragment">Erstes Kickstarter Projekt mit &gt;10mil $</li>
+							<li class="fragment">ARM Cortex-M3 Prozessor</li>
+							<li class="fragment">B/W Display</li>
+							<li class="fragment">Android &amp; iOS kompatibel</li>
+							<li class="fragment">Programmiersprachen: Javascript &amp; C</li>
+						</ul>
+						<img src="pebble_classic.jpg" width=300 style="float:right">
+					</section>
+
+					<section>
+						<h2>Pebble Time</h2>
+						<ul>
+							<li class="fragment">2015</li>
+							<li class="fragment">64-Farben Display</li>
+							<li class="fragment">Timeline Interface</li>
+							<li class="fragment">Kompatibel zur alten Pebble</li>
+						</ul>
+						<img src="pebble_time.jpg" width=300 style="float:right">
 					</section>
 				</section>
+
+				<!--<section>
+					<section>
+						<h1>Arch</h1>
+					</section>
+					<section>
+						<h2>JavaScript vs. C</h2>
+						<ul>
+							<li class="fragment">kann in C als auch Javascript Programmiert werden</li>
+							<li class="fragment">Javascript
+								<ul>
+									<li class="fragment">Läuft auf dem Handy</li>
+									<li class="fragment">Message API zur Uhr</li>
+									<li class="fragment">XMLHttpRequest</li>
+								</ul>
+							</li>
+							<li class="fragment">C
+								<ul>
+									<li class="fragment">auf der Uhr</li>
+									<li class="fragment">Kein Smartphone notwendig</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					</section>-->
+
 				<section>
-					<section data-markdown>
-						Javascript
-						==========
-					</section>
-
 					<section>
-						<h2>Kann <i>keine</i><br>Programmiersprache<br>sein</h2>
+						<h1>Install</h1>
 					</section>
-
 					<section>
-						<h3>Erfinder von Programmiersprachen</h3>
-						<table>
-							<tr>
-								<td class="fragment">
-									<img src="img/ritchie.jpg" width="200"><br>
-									Dennis<br>Ritchie<br>(C)
-								</td>
-								<td class="fragment">
-									<img src="img/stroustrup.jpg" width="200"><br>
-									Bjarne<br>Stroustrup<br>(C++)
-								</td>
-								<td class="fragment">
-									<img src="img/wirth.jpg" width="200"><br>
-									Niklaus<br>Wirth<br>(Pascal)
-								</td>
-								<td class="fragment">
-									<img src="img/matz.jpg" width="200"><br>
-									Yukihiro<br>Matsumoto<br>(Ruby)
-								</td>
-							</td>
-						</table>
-					</section>
-
-					<section>
-						<h1>Bärte</h1>
-						<img style="box-shadow:none;border:none; background:transparent; position: relative; top:-50px" src="img/beard.svg" width="300">
-					</section>
-
-					<section>
-						<h2>Meet Brendan Eich</h2>
-						<img src="img/eich.jpg" />
-						<p class="fragment">:-(</p>
-					</section>
-
-					<section data-markdown>
-						Ernsthaft.
-						----------
-						* funktional
-						* hoch dynamisch
-						* objektorientiert
-						* prototypen basiert
-					</section>
-
-					<section>
-						<h2>Basics</h2>
+						<h2>Account</h2>
+						<img src="pebble_sign_in.png" width="300" style="float:right"/>
 						<ul>
-							<li class="fragment"><code>var foo;</code></li>
-							<li class="fragment"><code>foo = 2;</code></li>
-							<li class="fragment"><code>foo = 'abc';</code></li>
-							<li class="fragment"><code>foo = "abc";</code></li>
-							<li class="fragment"><code>console.log(foo);</code></li>
+							<li>Für Zugriff auf SDK</li>
+							<li><a href="https://auth.getpebble.com/">https://auth.getpebble.com/</a>
+						</ul>
+					</section>
+					<section>
+						<h2>Pebble SDK</h2>
+						<ul>
+							<li>Enthält die Headerfiles, Buildtools, usw.</li>
+							<li><a href="http://tox.ninja/pblsdk">http://tox.ninja/pblsdk</a></li>
+						</ul>
+						&nbsp;<br>
+						&nbsp;<br>
+						&nbsp;<br>
+						<h2>Pebble Toolcahin</h2>
+						<ul>
+							<li>Enthält Compiler, Linker</li>
+							<li><a href="http://tox.ninja/pbltoolchain">http://tox.ninja/pbltoolchain</a></li>
+						</ul>
+					</section>
+					<section>
+						<h2>Installation</h2>
+						<pre><code class="bash">mkdir ~/pebble-dev/
+cd ~/pebble-dev/
+tar zxf ~/Downloads/PebbleSDK-3.4.tar.gz
+cd PebbleSDK-3.4
+tar zxf \
+   ~/Downloads/arm-cs-tools-$PLATTFORM.tar.gz
+export PATH=$PATH:~/pebble-dev/PebbleSDK-3.4/bin </code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>SDK</h1>
+					</section>
+
+
+					<section>
+						<h2><code>usage: pebble [-h] [--version]</code></h2>
+						<ul>
+							<li><code>new-project</code>: Erstellt Projekt</li>
+							<li><code>build</code>: Baut das Projekt</li>
+							<li><code>login</code>: registriert sich bei Cloudpebble</li>
+							<li><code>install --emulator {aplite,basalt}</code>: Startet Emulator mit Projekt</li>
+							<li><code>install --cloudpebble</code>: Installiert auf der Uhr</li>
 						</ul>
 					</section>
 
 					<section>
-						<h2>Kontrollstrukturen</h2>
+						<h2><code>pebble new-project helloworld</code></h2>
+						<pre><code style="font-size:30px;line-height:40px">$ pebble new-project helloworld
+$ tree helloworld
+helloworld
+├── appinfo.json
+├── resources
+├── src
+│   └── helloworld.c
+└── wscript</code></pre>
+					</section>
+
+					<section>
+						<h2>resources</h2>
 						<ul>
-							<li class="fragment"><code>if ( ... ) { ... } else { ... }</code></li>
-							<li class="fragment"><code>while ( ... ) {}</code></li>
-							<li class="fragment"><code>for (var i; i < 100; i++) {}</code></li>
+							<li>Assets</li>
+							<li>png</li>
 						</ul>
 					</section>
 
 					<section>
-						<h1>{ }</h1>
-						<p class="fragment">Object</p>
-						<p class="fragment"><code>foo = new Object();</code></p>
-						<p class="fragment"><code>foo = {};</code></p>
-						<p class="fragment">vgl. Hashtables</p>
-					</section>
-					<section>
-						<h2>Alles ist ein Objekt</h2>
+						<h2>src</h2>
 						<ul>
-							<li class="fragment">Funktionen</li>
-							<li class="fragment">Strings</li>
-							<li class="fragment">Zahlen</li>
-							<li class="fragment">Arrays</li>
-							<li class="fragment"><b>Alles</b></li>
+							<li>C-Sourcecode</li>
 						</ul>
 					</section>
+
 					<section>
-						<h2>Objekte</h2>
-						<div class="terminal"><pre>&gt; var foo = {}
-&gt; foo
-{}
-&gt; foo.bar = 'baz';
-foo
-{ bar: 'baz' }
-&gt; var NARF='bla';
-&gt; foo[NARF]=NARF;
-&gt; foo
-{ bar: 'baz', bla: 'bla' }
-	</pre></div>
+						<h2>appinfo.json</h2>
+						<ul>
+							<li>Meta Infos zum Projekt</li>
+							<li>Resource Index</li>
+							<li>Zielplatformen</li>
+						</ul>
+					</section>
+
+
+					<section>
+						<h2>src</h2>
+						<ul>
+							<li>Meta Infos zum Projekt</li>
+							<li>Resource Index</li>
+							<li>Zielplatformen</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h1><code>Code.</code></h1>
+				</section>
+				<section>
+					<section data-transition="linear" data-background="./swanson.jpg" data-background-transition="slide">
+						<h1>&nbsp;<br>&nbsp;<br>&nbsp;<br>Ron Swanson</h1>
 					</section>
 
 					<section>
-						<h1>[ ]</h1>
-						<p class="fragment">Array</p>
-						<p class="fragment"><code>foo = new Array();</code></p>
-						<p class="fragment"><code>foo = [];</code></p>
-						<p class="fragment"><code>foo[0] = "Alice";</code></p>
-						<p class="fragment"><code>foo.push("Bob");</code></p>
-					</section>
-
-					<section>
-						<h2>Arrays</h2>
-						<div class="terminal"><pre>
-&gt; var foo = [];
-&gt; foo
-[]
-&gt; foo.push(1);
-&gt; foo.push(2);
-&gt; foo;
-[ 1, 2 ]
-&gt; foo.bar = 'baz';
-[ 1, 2, bar: 'baz' ]
+						<h3>Ron Swanson</h3>
+						<pre class="terminaljs" data-columns="80" data-rows="16">
+cd ~/src/pebble;clear
 </pre>
-</div>
 					</section>
 
 					<section>
-						<h2>Funktionen</h2>
-						<ul>
-							<li class="fragment">Anonym: <code>function(arg0, arg1) { ... }</code></li>
-							<li class="fragment">Named: <code>function World(arg0, arg1) { ... }</code></li>
-							<li class="fragment">Lambda: <code>var l = function() { ... }</code></li>
-						</ul>
-					</section>
-
-					<section>
-						<h2>Prototypen</h2>
-						<ul>
-							<li>spezielle Funktionsobjekte, die als Klassenersatz dienen</li>
-							<li>durch <code>new</code> wird neues Objekt aus Prototyp erstellt</li>
-							<li>keine feste Syntax</li>
-						</ul>
-					</section>
-
-					<section>
-						<h2>Variante 1</h2>
-						<pre><code>function Car() {
-  this.fuel = 100;
-  this.drive = function() {
-    console.log("Fuel level: "
-      + --this.fuel);
-  }
-}
-						</code></pre>
-					</section>
-
-					<section>
-						<h2>Variante 2</h2>
-						<pre><code>function Car() {
-  this.fuel=100;
-}
-Car.prototype.drive = function() {
-  console.log("Fuel level: "
-    + --this.fuel);
-}
-						</code></pre>
-					</section>
-
-					<section>
-						<h2>Prototypen</h2>
-						<div class="terminal"><pre>clear
-node
-function Car(name) {
-  this.fuel=100;
-}
-Car.prototype.drive = function() {
-  console.log("Fuel level: " +
-    --this.fuel);
-}</pre>
-</div>
+						<h1>R<span class="fragment" style="position:absolute; color:red">o</span>un it!</h1>
+						<pre class="terminaljs" data-columns="40" data-rows="16" style="float:left">
+until cd ~/src/pebble/ron; do sleep 1; done;clear;
+</pre>
+						<iframe class="emulator" width=250 height=215 src="file:///home/tox/src/noVNC/vnc_auto.html?host=127.0.0.1&port=6080&true_color=1"></iframe>
+						&nbsp;<br>
+						&nbsp;<br>
+						&nbsp;<br>
+						<h2 class="fragment">Ron Approves</h2>
 					</section>
 				</section>
-
 				<section>
-					<section data-markdown>
-						Node.js Framework
-						=================
-					</section>
-					<section data-markdown>
-						Node.js
-						-------
-						* asynchron/eventbasiert
-						* v8 Engine
-						* platformübergreifend
-						  * Windows, Unix, Mac OS
-						  * Azure
-					</section>
-					<section>
-						<h2>Am Anfang</h2>
-						<ul>
-							<span style="float:right;">
-								<img src="img/dahl.png"><br>
-								Ryan Dahl
-							</span>
-							<li>Ursprünglich C Programmierer</li>
-							<li>High Performance Applikationen einfach erstellen</li>
-							<li>Javascript, weil keine IO-Funktionen</li>
-						</ul>
-					</section>
-
-					<section data-markdown>
-						Callbacks überall
-						-----------------
-						* Datei lesen:
-						```
-						fs.readFile("/etc/passwd",
-							function(err, data) {
-								if(err) throw err;
-								console.log(Data);
-							});
-						```
-						* TCP-Listen:
-						```
-						net.createServer(
-						function(socket) {
-							socket.end("Ciao");
-						}).listen(4242);
-						```
-					</section>
-					<section data-markdown>
-						Module
-						------
-
-						```var name = require('module');```
-
-						* ```net``` - TCP
-						* ```dgram``` - UDP
-						* ```http``` - HTTP
-						* ```os``` - OS-Informationen
-						* ```child_process``` - spawn/exec
-						* ...
-
-					</section>
-
-				</section>
-
-				<section>
-					<section>
-						<h1>Live Coding</h3>
-						<h3>Poor Mans Chat (<span class="addrc"></span>)</h3>
-					</section>
-
-					<section>
-						<h3>Poor Mans Chat (<span class="addrc"></span>)</h3>
-						<div class="terminal">
-							<pre>var net = require('net');
-
-var sockets = [];
-net.createServer(function(socket) {
-	sockets.push(socket);
-	socket.on('data', function(data) {
-		for(var i=0;i&lt;sockets.length;i++)
-			sockets[i].write(
-				socket.remoteAddress + ": " + data);
-	}).on('end', function() {
-		var index = sockets.indexOf(socket);
-		sockets.splice(index, 1);
-	})
-}).listen(4224);</pre>
-						</div>
-					</section>
-
-				</section>
-
-				<section>
-					<section data-markdown>
-						NPM
-						===
-						Node Package Manager
-
-						* Projektweit, nicht Maschinenweit
-						* Konkurrierende Versionen des gleichen Pakets
-					</section>
-
-					<section>
-						<h1>npmjs.org</h1>
-						<p>
-							NPM Paketdatenbank
-						</p>
-						<img src="img/npmjsorg.png">
-					</section>
-
-					<section>
-						<h2>Express Webframework (<span class="addrc"></span>)</h2>
-						<div class="terminal"><pre>
-&gt; npm install -g express-generator
-&gt; express web
-&gt; cd web
-&gt; npm install
-&gt; node app.js</pre>
-</div>
+					<section data-transition="linear" data-background="./swanson.jpg" data-background-transition="slide">
+						<h1>&nbsp;<br>&nbsp;<br>&nbsp;<br>Q & A</h1>
 					</section>
 				</section>
-
-				<section data-background="#4d7e65" data-markdown>
-					Fragen?
-					=======
-
-					Twitter: [@Gottox](http://twitter.com/Gottox)
-
-					Github: [github.com/Gottox](github.com/Gottox)
-
-				</section>
-
 			</div>
-
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
@@ -460,7 +319,7 @@ net.createServer(function(socket) {
 					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
 					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					//{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
 					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
@@ -468,5 +327,27 @@ net.createServer(function(socket) {
 
 		</script>
 
+		<script>
+var containers = document.getElementsByClassName('terminaljs'),
+	socket = io('http://127.0.0.1:3000/pty'), term, stream;
+for(var i = 0; i < containers.length; i++) {
+
+	// setting tabindex makes the element focusable
+	containers[i].tabindex = 0;
+
+	// use data-* attributes to configure terminal and child_pty
+	term = new Terminal(containers[i].dataset);
+
+	// Create bidirectional stream
+	stream = ss.createStream({decodeStrings: false, encoding: 'utf-8'});
+
+	// Send stream and options to the server
+	ss(socket).emit('new', stream, containers[i].dataset);
+
+	stream.write(containers[i].innerText);
+	// Connect everything up
+	stream.pipe(term).dom(containers[i]).pipe(stream);
+}
+		</script>
 	</body>
 </html>
