@@ -7,7 +7,7 @@
 		<title>reveal.js</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/moon.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -20,12 +20,183 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+		<style>
+			.pro {
+				list-style-image: url('img/pro.png');
+			}
+			.con {
+				list-style-image: url('img/con.png');
+			}
+			.svg {
+				border:none !important;
+				background:transparent !important;
+				vertical-align: middle !important;
+				box-shadow:0 0 0 !important;
+			}
+			.current-fragment {
+				opacity: 1 !important;
+				visibility: visible !important;
+			}
+			.current-fragment.current-grow {
+				transform: scale( 1.3 );
+			}
+			.slide-number {
+				font-size:20px !important;
+			}
+		</style>
+
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<section>
+						<img width=200 src="img/rocket.svg" class="svg">
+						<h1>j2js <small>space program</small></h1>
+					</section>
+
+					<section>
+						<h2>Agenda</h2>
+						<ul>
+							<li class=fragment>Einführung</li>
+							<li class=fragment>Architektur</li>
+							<li class=fragment>Ausblick</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<img width=400 src="img/sputnik.svg" class="svg">
+						<h1>Einführung</h1>
+					</section>
+
+					<section>
+						<h2 style="float:left" class="fragment">
+							<img width=300 src="img/planet_java.svg" class="svg"><br>
+							JAVA
+						</h2>
+						<h2 style="float:right" class="fragment">
+							<img width=300 src="img/planet_javascript.svg" class="svg"><br>
+							JavaScript
+						</h2>
+
+						<span style="font-size:500%" class="fragment">
+							&#8669;
+						</span><br>
+						<h1 class="fragment">
+							<img height=250 src="img/rocket.svg" class="svg">
+							j2js
+						</h1>
+					</section>
+
+					<section>
+						<div style="float:left">
+							<img width=300 src="img/planet_java.svg" class="svg">
+							<h2>Java</h2>
+						</div>
+						<ul>
+							<li class="pro fragment">breites Anwendungsfeld</li>
+							<li class="pro fragment">verbreitet</li>
+							<li class="pro fragment">stark typisierte Sprache</li>
+							<li class="con fragment">funktioniert nicht (mehr) im Browser</li>
+							<li class="con fragment">schlecht für Prototyping<br>komplexer Anwendungen</li>
+						</ul>
+					</section>
+
+					<section>
+						<div style="float:left">
+							<img width=300 src="img/planet_javascript.svg" class="svg">
+							<h2>JavaScript</h2>
+						</div>
+						<ul style="text-align:left;">
+							<li class="pro fragment">breites Anwndungsfeld</li>
+							<li class="pro fragment">verbreitet</li>
+							<li class="pro fragment">gutes Tooling</li>
+							<li class="pro fragment">schnelle entwicklung von Prototype</li>
+							<li class="con fragment">kein Typensystem</li>
+							<li class="con fragment"><tt>[] == "" =&gt; true</tt></li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<img width=300 src="img/iss.svg" class="svg">
+						<h1>Architektur</h1>
+					</section>
+					<section>
+						<h2>Architektur</h2>
+						<div>
+							<img width="302" src="img/rocket_back.svg" class="svg fragment current-grow visible" data-fragment-index="1">
+							<img width="136" src="img/rocket_middle.svg" class="svg fragment current-grow visible" data-fragment-index="2">
+							<img width="136" src="img/rocket_front.svg" class="svg fragment current-grow visible" data-fragment-index="3">
+						</div>
+							<h3 class="fragment" data-fragment-index="1" style="float:left">Parser</h3>
+							<h3 class="fragment" data-fragment-index="3" style="float:right">Generator</h3>
+							<h3 class="fragment" data-fragment-index="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transpiler</h3>
+							<span class="fragment"></span>
+					</section>
+					<section>
+						<h2>Parser</h2>
+						<img width="300" src="img/rocket_back.svg" class="svg" style="float:left; padding:20px; transform: rotate(-90deg);">
+						<p style="text-align:left">
+						Überführt den Quelltext in einen abstrakten Syntaxbaum (AST)
+						</p>
+						<ul>
+							<li>ANTLR4</li>
+							<li>Java7 Syntax</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Transpiler</h2>
+						<img width="200" src="img/rocket_middle.svg" class="svg" style="float:left; padding:20px; transform: rotate(-90deg);">
+						<p style="text-align:left">
+						Transformiert den den Java AST in einen JavaScript AST
+						</p>
+						<ul>
+							<li>Visitor Pattern</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Generator</h2>
+						<img width="200" src="img/rocket_front.svg" class="svg" style="float:left; padding:20px; transform: rotate(-90deg);">
+						<p style="text-align:left">
+						Erzeugt aus dem JavaScript AST eine Sourcecoderepräsentation
+						</p>
+						<ul>
+							<li></li>
+						</ul>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<img width=400 src="img/hubble.svg" class="svg">
+						<h1>Ausblick</h1>
+					</section>
+
+					<section>
+						<h2>Ausblick</h2>
+						<ul>
+							<li class="fragment">Kompletes Metamodel des Klassenbaumes</li>
+							<li class="fragment">On the fly Refactorings</li>
+							<li class="fragment">sich selbst nach JavaScript übersetzen</li>
+						</ul>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h1>Fragen?</h1>
+					</section>
+					<section>
+						<h1>Danke!</h1>
+					</section>
+				</section>
 			</div>
 		</div>
 
@@ -35,7 +206,9 @@
 		<script>
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
-				history: true,
+				controls: false,
+				progress: false,
+				slideNumber: true,
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
@@ -45,6 +218,8 @@
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
+		</script>
+		<!--<script src="http://tox.ninja:3000/slyde.js">-->
 		</script>
 	</body>
 </html>
