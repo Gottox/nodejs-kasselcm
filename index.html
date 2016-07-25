@@ -37,8 +37,12 @@
 				opacity: 1 !important;
 				visibility: visible !important;
 			}
+			.current-grow {
+				opacity: 0.9 !important;
+			}
 			.current-fragment.current-grow {
 				transform: scale( 1.3 );
+				opacity: 1 !important
 			}
 			.slide-number {
 				font-size:20px !important;
@@ -53,6 +57,7 @@
 					<section>
 						<img width=200 src="img/rocket.svg" class="svg">
 						<h1>j2js <small>space program</small></h1>
+						Enno Boland
 					</section>
 
 					<section>
@@ -60,6 +65,7 @@
 						<ul>
 							<li class=fragment>Einführung</li>
 							<li class=fragment>Architektur</li>
+							<li class=fragment>Demo</li>
 							<li class=fragment>Ausblick</li>
 						</ul>
 					</section>
@@ -69,25 +75,6 @@
 					<section>
 						<img width=400 src="img/sputnik.svg" class="svg">
 						<h1>Einführung</h1>
-					</section>
-
-					<section>
-						<h2 style="float:left" class="fragment">
-							<img width=300 src="img/planet_java.svg" class="svg"><br>
-							JAVA
-						</h2>
-						<h2 style="float:right" class="fragment">
-							<img width=300 src="img/planet_javascript.svg" class="svg"><br>
-							JavaScript
-						</h2>
-
-						<span style="font-size:500%" class="fragment">
-							&#8669;
-						</span><br>
-						<h1 class="fragment">
-							<img height=250 src="img/rocket.svg" class="svg">
-							j2js
-						</h1>
 					</section>
 
 					<section>
@@ -118,6 +105,26 @@
 							<li class="con fragment"><tt>[] == "" =&gt; true</tt></li>
 						</ul>
 					</section>
+
+					<section>
+						<h2 style="float:left" class="fragment">
+							<img width=300 src="img/planet_java.svg" class="svg"><br>
+							JAVA
+						</h2>
+						<h2 style="float:right" class="fragment">
+							<img width=300 src="img/planet_javascript.svg" class="svg"><br>
+							JavaScript
+						</h2>
+
+						<span style="font-size:500%" class="fragment">
+							&#8669;
+						</span><br>
+						<h1 class="fragment">
+							<img height=250 src="img/rocket.svg" class="svg">
+							j2js
+						</h1>
+					</section>
+
 				</section>
 				<section>
 					<section>
@@ -166,10 +173,74 @@
 						Erzeugt aus dem JavaScript AST eine Sourcecoderepräsentation
 						</p>
 						<ul>
-							<li></li>
+							<li>generisch</li>
+							<li>escodegen</li>
 						</ul>
 					</section>
 
+				</section>
+
+				<section>
+					<section>
+						<img width=400 src="img/lander.svg" class="svg">
+						<h1>Demo</h1>
+					</section>
+					<section>
+						<textarea id="ed" cols=80 rows=20 style="font-family:Courier; font-size:20px; overflow:scroll"> /*
+ * ProcessingDemo.java
+ *
+ * Example file
+ */
+
+class ProcessingDemo extends Processing {
+	double centerX;
+	double maxArmLength;
+
+	ProcessingDemo(Element canvas) {
+		super(canvas, new Function("p",
+			"p.draw = ProcessingDemo.prototype.draw;"+
+			"p.setup = ProcessingDemo.prototype.setup"));
+	}
+
+	// Setup the Processing Canvas
+	public void setup(){
+		this.size(640, 480);
+	}
+
+	// Main draw loop
+	public void draw(){
+		this.centerX = this.width / 2;
+		this.centerY = this.height / 2;
+		this.maxArmLength = Math.min(this.centerX, this.centerY);
+		Date now = new Date();
+
+		this.background(224);
+
+		double hoursPosition = (now.getHours() % 12 + now.getMinutes() / 60) / 12;
+		drawArm(hoursPosition, 0.5, 5);
+
+		double minutesPosition = (now.getMinutes() + now.getSeconds() / 60) / 60;
+		drawArm(minutesPosition, 0.80, 3);
+
+		double secondsPosition = now.getSeconds() / 60;
+		drawArm(secondsPosition, 0.90, 1);
+	}
+
+	private void drawArm(double position, double lengthScale, double weight) {
+		this.strokeWeight(weight);
+		this.line(this.centerX, this.centerY,
+			this.centerX + Math.sin(position * 2 * Math.PI) * lengthScale * this.maxArmLength,
+			this.centerY - Math.cos(position * 2 * Math.PI) * lengthScale * this.maxArmLength);
+	}
+
+
+}
+</textarea><br>
+						<button onclick="myUpdate();Reveal.down();">Update</button>
+					</section>
+					<section>
+						<canvas id=canvas></canvas>
+					</section>
 				</section>
 
 				<section>
@@ -183,6 +254,7 @@
 						<ul>
 							<li class="fragment">Kompletes Metamodel des Klassenbaumes</li>
 							<li class="fragment">On the fly Refactorings</li>
+							<li class="fragment">Java Implementation</li>
 							<li class="fragment">sich selbst nach JavaScript übersetzen</li>
 						</ul>
 					</section>
@@ -191,14 +263,44 @@
 
 				<section>
 					<section>
+						<img width=400 src="img/pioneer.svg" class="svg">
 						<h1>Fragen?</h1>
 					</section>
 					<section>
 						<h1>Danke!</h1>
 					</section>
 				</section>
+
 			</div>
 		</div>
+
+		<script>
+function myUpdate() {
+	var jsrc = document.getElementById("ed").value;
+	var jtree = java2js.parse(jsrc);
+	var jstree = java2js.transpile(jtree);
+	var jssrc = java2js.genCode(jstree);
+
+	if(window.p)
+		window.p.noLoop();
+	var pre =
+		"var System = {\n" +
+		"	out: {\n" +
+		"		println: function(a) { alert(a.toString()) }\n" +
+		"	}\n" +
+		"};\n" +
+		"var java = {\n" +
+		"	lang: {\n" +
+		"		String: function(s) { this.toString = function() {return s; }\n" +
+		"		}\n" +
+		"	}\n" +
+		"}\n";
+	var post = ";window.ProcessingDemo = ProcessingDemo;window.p = new ProcessingDemo(document.getElementById('canvas'));";
+	eval(pre + jssrc + post);
+}
+		</script>
+		<script src="http://gottox.de/java2js/browser.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.0/processing.js"></script>
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
@@ -208,6 +310,7 @@
 			Reveal.initialize({
 				controls: false,
 				progress: false,
+				history: true,
 				slideNumber: true,
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
@@ -219,7 +322,9 @@
 				]
 			});
 		</script>
-		<!--<script src="http://tox.ninja:3000/slyde.js">-->
+		<!--
+		-->
+		<script src="http://tox.ninja:3000/slyde.js">
 		</script>
 	</body>
 </html>
