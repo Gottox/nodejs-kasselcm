@@ -30,3 +30,4 @@ cat <<EOF
 	</body>
 </html>
 EOF
+git add index.html
