@@ -187,7 +187,7 @@
 						<h1>Demo</h1>
 					</section>
 					<section>
-						<textarea id="ed" cols=80 rows=20 style="font-family:Courier; font-size:20px; overflow:scroll"> /*
+						<iframe class="ace" width=1000 height=500 id="editor" data-mode="ace/mode/java" data-theme="ace/theme/twilight">/*
  * ProcessingDemo.java
  *
  * Example file
@@ -233,10 +233,7 @@ class ProcessingDemo extends Processing {
 			this.centerX + Math.sin(position * 2 * Math.PI) * lengthScale * this.maxArmLength,
 			this.centerY - Math.cos(position * 2 * Math.PI) * lengthScale * this.maxArmLength);
 	}
-
-
-}
-</textarea><br>
+}</iframe><br>
 						<button onclick="myUpdate();Reveal.down();">Update</button>
 					</section>
 					<section>
@@ -277,7 +274,7 @@ class ProcessingDemo extends Processing {
 
 		<script>
 function myUpdate() {
-	var jsrc = document.getElementById("ed").value;
+	var jsrc = Reveal.ace.editor.getValue();
 	var jtree = java2js.parse(jsrc);
 	var jstree = java2js.transpile(jtree);
 	var jssrc = java2js.genCode(jstree);
@@ -319,13 +316,13 @@ function myUpdate() {
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'bower_components/reveal.js-ace/ace.js' }
 				]
 			});
 		</script>
 		<!--
-		<script src="http://tox.ninja:3000/slyde.js">
+		<script src="http://tox.ninja:3000/slyde.js"></script>
 		-->
-		</script>
 	</body>
 </html>
