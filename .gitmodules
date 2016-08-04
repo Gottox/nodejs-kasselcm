@@ -1,0 +1,4 @@
+[submodule "j2js"]
+	path = j2js
+	url = https://github.com/Gottox/talks.git
+	branch = talk-j2js
