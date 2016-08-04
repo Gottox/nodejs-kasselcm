@@ -1,0 +1,27 @@
+/*
+ * style.css
+ * Copyright (C) 2016 tox
+ *
+ * Distributed under terms of the MIT license.
+ */
+
+@import 'https://fonts.googleapis.com/css?family=Titillium+Web';
+
+body {
+	background: #93a1a1;
+	color: rgb(238, 232, 213);
+	font-family: 'Titillium Web', sans-serif;
+}
+
+h1 {
+	text-align:center
+}
+
+a {
+	color: rgb(238, 232, 213);
+}
+
+a:hover {
+	text-shadow: 2px 2px 5px;
+}
+
