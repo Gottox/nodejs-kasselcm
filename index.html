@@ -187,7 +187,7 @@
 						<h1>Demo</h1>
 					</section>
 					<section>
-						<iframe class="ace" width=1000 height=500 id="editor" data-mode="ace/mode/java" data-theme="ace/theme/twilight">/*
+						<iframe class="ace" width=1000 height=500 id="editor" data-mode="ace/mode/java" data-theme="ace/theme/solarized_dark">/*
  * ProcessingDemo.java
  *
  * Example file
@@ -310,7 +310,11 @@ function myUpdate() {
 				progress: false,
 				history: true,
 				slideNumber: true,
-
+				ace: {
+					oninit: function(editor) {
+						editor.renderer.setShowGutter(false);
+					}
+				},
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
