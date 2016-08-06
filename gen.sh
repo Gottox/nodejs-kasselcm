@@ -2,6 +2,7 @@
 upstream=$(git remote get-url Gottox | sed 's#:#/#; s#.*git@#https://#;')
 
 init() {
+	git submodule deinit --all >&2
 	sed "s#^talk-\(.*\)#\1#" | \
 		while read talk; do
 			[ -d "$talk" ] && git rm -f "$talk" > /dev/null
