@@ -1,11 +1,19 @@
-[submodule "pebble"]
-	path = pebble
-	url = https://github.com/Gottox/talks.git
-	branch = talk-pebble
 [submodule "j2js"]
 	path = j2js
 	url = https://github.com/Gottox/talks.git
 	branch = talk-j2js
+[submodule "nodejs"]
+	path = nodejs
+	url = https://github.com/Gottox/talks.git
+	branch = talk-nodejs
+[submodule "pebble"]
+	path = pebble
+	url = https://github.com/Gottox/talks.git
+	branch = talk-pebble
+[submodule "terminaljs"]
+	path = terminaljs
+	url = https://github.com/Gottox/talks.git
+	branch = talk-terminaljs
 [submodule "void-kcm2015"]
 	path = void-kcm2015
 	url = https://github.com/Gottox/talks.git
