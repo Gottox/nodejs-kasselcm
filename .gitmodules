@@ -18,3 +18,7 @@
 	path = void-kcm2015
 	url = https://github.com/Gottox/talks.git
 	branch = talk-void-kcm2015
+[submodule "void-lightning-2015"]
+	path = void-lightning-2015
+	url = https://github.com/Gottox/talks.git
+	branch = talk-void-lightning-2015
