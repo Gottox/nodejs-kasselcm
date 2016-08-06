@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="30cm" height="10cm" viewBox="-1 19 587 195" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <image x="0" y="20" width="261" height="192.343" xlink:href="file:///home/tox/Screenshot%20from%202016-01-25%2014-05-48.png"/>
+  <g>
+    <polygon style="fill: #000000" points="380,120 362.792,145.812 328.375,145.812 311.167,120 328.375,94.1876 362.792,94.1876 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ffffff" points="380,120 362.792,145.812 328.375,145.812 311.167,120 328.375,94.1876 362.792,94.1876 "/>
+    <text font-size="22.5778" style="fill: #ffffff;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="345.583" y="116.775">
+      <tspan x="345.583" y="116.775">PTY</tspan>
+    </text>
+  </g>
+  <text font-size="16.9331" style="fill: #ffffff;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="440" y="176.15">
+    <tspan x="440" y="176.15">tcsetattr</tspan>
+  </text>
+  <text font-size="16.9331" style="fill: #ffffff;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="440" y="80">
+    <tspan x="440" y="80">ioctl</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ffffff" x1="440" y1="160" x2="380.451" y2="136.482"/>
+    <polygon style="fill: #ffffff" points="373.476,133.728 384.613,132.75 380.451,136.482 380.94,142.051 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ffffff" points="373.476,133.728 384.613,132.75 380.451,136.482 380.94,142.051 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ffffff" x1="440" y1="80" x2="382.313" y2="104.439"/>
+    <polygon style="fill: #ffffff" points="375.407,107.365 382.664,98.8602 382.313,104.439 386.565,108.068 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ffffff" points="375.407,107.365 382.664,98.8602 382.313,104.439 386.565,108.068 "/>
+  </g>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ffffff" x1="311.167" y1="120" x2="272.646" y2="119.184"/>
+    <polygon style="fill: #ffffff" points="265.148,119.025 275.252,114.238 272.646,119.184 275.04,124.236 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ffffff" points="265.148,119.025 275.252,114.238 272.646,119.184 275.04,124.236 "/>
+  </g>
+  <text font-size="16.9331" style="fill: #ffffff;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="440" y="120">
+    <tspan x="440" y="120">Data</tspan>
+    <tspan x="440" y="141.167">Escape Sequences</tspan>
+  </text>
+  <g>
+    <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ffffff" x1="440" y1="120" x2="389.74" y2="120"/>
+    <polygon style="fill: #ffffff" points="382.24,120 392.24,115 389.74,120 392.24,125 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #ffffff" points="382.24,120 392.24,115 389.74,120 392.24,125 "/>
+  </g>
+</svg>
