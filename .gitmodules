@@ -2,3 +2,7 @@
 	path = j2js
 	url = https://github.com/Gottox/talks.git
 	branch = talk-j2js
+[submodule "void-kcm2015"]
+	path = void-kcm2015
+	url = https://github.com/Gottox/talks.git
+	branch = talk-void-kcm2015
