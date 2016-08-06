@@ -20,11 +20,13 @@ var RevealAce = window.RevealAce || (function() {
 			"<script src='https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.9/ace.js' type='text/javascript' charset='utf-8'></script>"+
 			"</head>"+
 			"<body>"+
-			"<div id='editor' style='position:absolute; left:0; top:0; bottom:0; right:0;'></div>"+
+			"<div id='editor' style='position:absolute; left:0; top:0; bottom:0; right:0;'>"+
+			iframe.innerHTML+ // innerHTML is already escaped
+			"</div>"+
 			"</body>"+
 			"</html>");
 		iframe.onload = function() {
-			function slidechanged( event ) {
+			function slidechanged(event) {
 				var e = iframe;
 				for(var e = iframe; e && e != event.currentSlide; e = e.parentNode);
 				if(!e)
@@ -37,7 +39,6 @@ var RevealAce = window.RevealAce || (function() {
 			editor.setOptions({
 				fontSize: "16pt"
 			});
-			editor.setValue(iframe.textContent);
 
 			// Configuration
 			if(aceConf.theme)
