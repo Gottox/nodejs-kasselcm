@@ -1,3 +1,7 @@
+[submodule "pebble"]
+	path = pebble
+	url = https://github.com/Gottox/talks.git
+	branch = talk-pebble
 [submodule "j2js"]
 	path = j2js
 	url = https://github.com/Gottox/talks.git
