@@ -6,10 +6,6 @@
 	path = nodejs
 	url = https://github.com/Gottox/talks.git
 	branch = talk-nodejs
-[submodule "pebble"]
-	path = pebble
-	url = https://github.com/Gottox/talks.git
-	branch = talk-pebble
 [submodule "terminaljs"]
 	path = terminaljs
 	url = https://github.com/Gottox/talks.git
