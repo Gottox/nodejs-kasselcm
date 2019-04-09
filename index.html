@@ -85,6 +85,9 @@
 	text-shadow:0 0 10px;
 	animation: blink 2s infinite ease-in-out;
 }
+.gray {
+	color: gray
+}
 	</style>
 	</head>
 
@@ -95,84 +98,259 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
+				<!--<section>
+					* Why a Linux distribution in 2018?
+					* The xtraeme situation
+					* Third party tools
+						* wiki
+						* forum
+					* reboot of voidlinux
+					* financial situation
+					* features
+						* libressl
+							* xbps-src
+							*
+					* thanks
+					* plans for '19
+					* Advent Of Void
+				</section>-->
 				<section data-notype="1">
-					<center><img src="images/void.svg" style="border:none; box-shadow:none;width:500px; background:transparent"></center>
+					<center>
+						<img src="images/void.svg" style="border:none; box-shadow:none;width:500px; background:transparent">
+					</center>
 				</section>
 				<section>
-					<pre style="font-size:40px; border-width:0 !important; box-shadow:0 0 0;">                 <span style="color:#0f0">OOOOOOO
-               OO       OO
-                   .-.   OO</span>
-              <span>O</span>  <span style="color:white;">V O I D</span>  <span style="color:#0f0">O</span>
-              <span>OO</span>   <span style="color:#0f0">._. </span>
-               <span>OO       OO</span>
-                 <span>OOOOOOO</span></pre>
+					<pre style="font-size:40px; border-width:0 !important; box-shadow:0 0 0;">
+    <span style="color:#0f0">OOOOOOO
+  OO       OO
+      .-.   OO</span>
+ <span>O</span>  <span style="color:white;">V O I D</span>  <span style="color:#0f0">O</span>
+ <span>OO</span>   <span style="color:#0f0">._. </span>
+  <span>OO       OO</span>
+    <span>OOOOOOO</span></pre>
 					<div>VoidLinux</div>
-					<div style="color:gray">Enno Boland</div>
+					<div class="gray">Enno Boland (Core Maintainer)</div>
 				</section>
 
 				<section>
-					<h2>:: index</h2>
-					<ul>
-						<li>Was ist Void Linux?</li>
-						<li>Besonderheiten</li>
-						<li>Packet Management</li>
-						<li>Build System</li>
-					</ul>
+					Before we begin...
+					<div class=fragment><span class="gray">*</span> VoidLinux?</div>
+					<div class=fragment><span class="gray">*</span> MacOS?</div>
+					<div class=fragment><span class="gray">*</span> Linux?</div>
+					<div class=fragment><span class="gray">*</span> BSD?</div>
+					<div class=fragment><span class="gray">*</span> for Trolling?</div>
 				</section>
 
 				<section>
-					<center class="invader">h</center>
-					<ul>
-						<li class="fragment">Windows? <span class=fragment>MacOS?</span> <span class=fragment>Linux?</span> <span class=fragment>BSD?</span></li>
-						<li class="fragment">VoidLinux?</li>
-					</ul>
+					Joined in 2012.
+					<div class=fragment>Had a Mac, wanted to go back to Linux</div>
+					<div class=fragment>Found out about Void via pancake (radare)</div>
+					<br>
+					<br>
+					<div class=fragment>6 people in IRC</div>
+					<div class=fragment>No multilib</div>
+					<div class=fragment>No cross compiling</div>
+					<div class=fragment>Nobody cared about us</div>
+					<div class=fragment>Nobody cared about systemd</div>
+					<div class=fragment style="color:#444">Void was based on it</div>
+					<br>
+					<br>
+					<!--<span class=fragment>It</span>
+					<span class=fragment>was</span>
+					<span class="fragment gray">awesome</span>-->
 				</section>
 
 				<section>
-					<center class="invader">s</center>
-					<h1>What's Void Linux?</h1>
-					<span style="color: red;">"Not a fork!" "Rolling release" "runit" "LibreSSL" "musl-libc"</span>
+					In the last 6 years:
+					<div class=fragment>* Multilib support</div>
+					<div class=fragment>* Cross compiling</div>
+					<div class=fragment>&nbsp;&nbsp;* armv[67]</div>
+					<div class=fragment>&nbsp;&nbsp;* aarch64</div>
+					<div class=fragment>&nbsp;&nbsp;* x86_64</div>
+					<div class=fragment>&nbsp;&nbsp;* i686</div>
+					<div class=fragment>* first class musl libc support</div>
+					<div class=fragment>* replaced systemd with runit</div>
 				</section>
 
 				<section>
-					<h2>:: Not a fork!</h2>
-					<ul>
-						<li class="fragment">basiert nicht auf anderer Distribution</li>
-						<li class="fragment">erste Commits in 2008</li>
-						<li class="fragment">über 6000 Pakete</li>
-						<li class="fragment">Portabel!
-							<ul>
-								<li class="fragment">x86, x86_64, ARMv6, ARMv7 <span class="fragment">(MIPS, aarch64)</span></li>
-								<li class="fragment">glibc und musl</li>
-							</ul>
-						</li>
-					</ul>
+					<h2>2013</h2>
+					musl libc was introduced<br>
+					readable source &lt;3<br>
+					<span class="fragment">@#$%^&*!</span><span class="fragment gray"> - systemd</span>
+					<div class="fragment">
+					systemd uses GNU extensions
+					<!--<div class=fragment>Not available on musl</div>-->
+					</div>
 				</section>
 
 				<section>
-					<h2>:: Rolling release</h2>
-					<ol>
-						<li class="fragment">Autor macht Änderung</li>
-						<li class="fragment">push void-packages auf GitHub</li>
-						<li class="fragment">build.voidlinux.eu baut Paket</li>
-						<li class="fragment">signiert</li>
-						<li class="fragment">auf http veröffentlicht</li>
-					</ol>
+					<h2>2013</h2>
+					Replaced systemd with runit:
+					<div class=fragment>* Gnome became tricky</div>
+					<div class=fragment>* I became the Gnome maintainer</div>
 				</section>
 
 				<section>
-					<img src="images/Musl_libc.png" style="background:transparent; border:none; float:none !important;"/>
+					<h2>Fast forward to 2016...</h2><br>
+					<br>
+					<br>
+					<br>
+					<h2 style="text-align:center" class=fragment>
+						The leadership situation
+					</h2>
+				</section>
+
+				<section>
+					<h2 data-notype=1>Fast forward to 2016...</h2><br>
+					<div class=>project founder left</div>
+					<div class=fragment>irregular contact through twitter.</div>
+					<div class=fragment>promises that this is temporary.</div>
+				</section>
+
+				<section>
+					<h2>2017</h2>
+					<div class="fragment">No change</div>
+					<div class="fragment">
+						We removed donation links to his personal accounts
+						<pre style="box-shadow:none" class=fragment>
+<span style="color: #ffff00">commit 82ef53438693af23b205ea58bebaef71c927afb3</span>
+Author: Enno Boland &lt;g@s01.de&gt;
+Date:   Thu Dec 14 07:27:56 2017 +0100
+
+    remove donation links.
+
+    We're currently well funded and currently don't know what to do with
+    extra money. We think it's more honest to remove those links from
+    its prominent place.</pre>
+					</div>
+					
+				</section>
+				<section>
+					<h2>Late 2017</h2>
+					Late 2017: Still no change.
+					<div class="fragment">
+						Solution: <span class="gray">fork Void.</span><br>
+					</div>
+					<div class="fragment">
+						<img src="images/exnihilo.png">
+					</div>
+				</section>
+
+				<section>
+					<h2>2018</h2>
+					Preparations for the fork were finished.<br>
+					* Domains were registered<br>
+					* Blog entry was written<br>
+					<div class=fragment>* We waited for day X</div>
+				</section>
+
+				<section>
+					<h2 data-notype=1>2018</h2>
+					the project founder disappeared completely.<br>
+					<div class=fragment>
+					No contact since then.<br>
+					We don't know what happened to him.<br>
+					</div>
+				</section>
+
+				<section>
+					<h2 data-notype=1>2018</h2>
+					We discussed what to do.<br>
+					<div class=fragment>
+						<span class=gray>1)</span> Continue with our fork as we intended<br>
+					</div>
+					<div class=fragment>
+						<span class=gray>2)</span> Stay with the brand, clean up the mess
+					</div>
+				</section>
+
+				<section>
+					<h2 data-notype=1>2018</h2>
+					<h1>2)</h1>
+				</section>
+
+				<section>
+					<h2 data-notype=1>2018</h2>
+					<img src="images/issues.png" height=300
+							 style="float:right;">
+					<div class=fragment>
+						on May 1st: disclosure.<br>
+					</div>
+					<br clear=both>
+					<div class=fragment>
+						FOSS news love drama.<br>
+						<img src="images/mia.png">
+					</div>
+				</section>
+
+				<section>
+					<h2 data-notype=1>2018</h2>
+					Then the work began:<br>
+					<div class=fragment>* Talking to GitHub</div>
+					<div class=fragment>* Talking to Freenode</div>
+					<div class=fragment>* Talking to Gandi</div>
+				</section>
+
+				<section>
+					<h2><span data-notype=1>2018</span>: GitHub</h2>
+					<div class=fragment>Friendly, but not helpful at all</div>
+					<div class=fragment>* new Organisation: void<span class=gray>-</span>linux</div>
+					<div class=fragment>* We cannot close or archive the old organisation</div>
+					<div class=fragment>* Bot notifies commenters about wrong org</div>
+				</section>
+
+				<section>
+					<h2><span data-notype=1>2018</span>: Freenode</h2>
+					<div class=fragment>Was done in a day</div>
+					<div class=fragment>* Chatted with admins</div>
+					<div class=fragment>* Verified my mail address</div>
+					<div class=fragment>* Got Channel owner</div>
+				</section>
+
+				<section>
+					<h2><span data-notype=1>2018</span>: Gandi</h2>
+					<h1 class=fragment>HAHAHAHA</h1>
+					<div class=fragment>
+						Not a chance
+					</div>
+				</section>
+
+				<section>
+					<h2><span data-notype=1>2018</span>: New rules</h2>
+					<div class=fragment>Avoid single point of failures </div>
+					<div class=fragment>* multiple admins at the top</div>
+					<div class=fragment>* consens based
+						<span class=fragment style="color:#555"> - doesn't scale; works for us</span>
+					</div>
+					<div class=fragment>* No single person has exclusive access to a resource</div>
+				</section>
+
+				<section>
+					<h2><span data-notype=1>2018</span>: Donations</h2>
+					<div class=fragment>Problem: money is always bound to a single entity</div>
+					<div class=fragment>* registered association: too much overhead</div>
+					<div class=fragment>* SPI: trustee that manages donations</div>
+					<div class=fragment>&nbsp;&nbsp;* Have a hard time to communicate</div>
+					<div class=fragment>* No solution found yet</div>
+				</section>
+
+				<section>
+					<h2>Technical news of 2018</h2>
+					<div class=fragment>* C compiler: gcc8.2, following the release cycle</div>
+					<div class=fragment>* rust: cross compiling works, shipping stable rust</div>
+					<div class=fragment>* firefox: ongoing work to get cross compiling to work.</div>
+					<div class=fragment>* qt: 5.11, working towards 5.12</div>
+					<div class=fragment>* Ports: PPC 32 and 64 nearly finished</div>
+				</section>
+
+				<section>
+					<h1>Questions?</h1>
+				</section>
+				<!--<section>
+					<img src="images/Musl_libc.png" style="background:transparent; border:none; float:none !important; box-shadow:none"/>
 					<br style="clear:both !important;">
-					<img src="images/fixingmusl.png" style="background:transparent; border:none; float:none !important;float:right !important;" width=600>
 					<div>Standard Library</div>
-					<ul>
-						<li class="fragment">Ersatz für glibc</li>
-							<ul>
-								<li class="fragment">printf(), str{cpy,str,len,...}(), fopen(), memcpy(), ...</li>
-							</ul>
-						</li>
-						<li class="fragment">POSIX</li>
-					</ul>
+					<div class="fragment">* benchmarks portability</div>
 				</section>
 
 				<section>
@@ -292,7 +470,7 @@ armv7l-musl:  4166 <span style="color:#ccc">&lt;--------'  </span>
              +----+ `--&gt; ...
              <span style="color:red" class="fragment">runit</span>
 </pre>
-          </section>-->
+          </section>
 
 				<section>
 					<h2>:: Summary</h2>
@@ -312,12 +490,14 @@ armv7l-musl:  4166 <span style="color:#ccc">&lt;--------'  </span>
 							</ul>
 						</li>
 					</ul>
-				</section>
+				</section>-->
 
 				<section data-notype="1">
 					<h1 class="gameover">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GAME Over</h1>
 					<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Insert Coin</h2>
-					<div class="fragment">Fragen?</div>
+					<p style="text-align: center">
+						20:00: Void Linux User meeting
+					</p>
 				</section>
 
 				<section>
@@ -336,7 +516,7 @@ armv7l-musl:  4166 <span style="color:#ccc">&lt;--------'  </span>
 				controls: false,
 				progress: false,
 				history: true,
-				center: true,
+				center: false,
 
 				transition: 'none', // none/fade/slide/convex/concave/zoom
 
