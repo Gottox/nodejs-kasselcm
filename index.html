@@ -7,7 +7,7 @@
 		<title>reveal.js</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/kcm.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -20,38 +20,213 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+		<style>
+.top_logo {
+	opacity: 1;
+	position:absolute;
+	left:5%;
+	top:5%;
+	width: 300px;
+	transition: opacity 0.5s;
+}
+.logo_shown .top_logo {
+	opacity: 0
+}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-background="logo.jpg"></section>
-				<section data-markdown>
-					# Willkommen
-					## #kcm16
+				<section data-state="logo_shown" data-background="logo-old.jpg">
+				</section>
+				<section data-state="logo_shown" data-transition="fade-in slide-out">
+					<img src="./kcm-logo-transparent.svg" type="image/svg+xml" style="background:none; border:none;box-shadow: none">
 				</section>
 				<section data-markdown>
-					## Wir brauchen Talks!
-					* Angebote an den Flipchart
-					* In den Pausen abstimmen
+					Hashtag:
+					### #kcm17
+					Twitter Account:
+					### @KasselCode
 				</section>
-				<section data-background="how-to-go.jpg"></section>
-				<section data-background="manim.jpg"></section>
-				<section data-background="cuda.jpg"></section>
-				<section data-background="logo.jpg">
+
+				<section>
+					<section data-markdown>
+						## Ablauf
+					</section>
+
+					<section data-markdown>
+						## Lightning Talks
+					</section>
+
+					<section data-markdown>
+						### Talk No. 1
+
+						## Advanced SQL Injection Angriffe
+
+						*von Matthias*
+					</section>
+					<section data-markdown>
+						## Pizza
+					</section>
+					<section data-markdown>
+						### Talk No. 2
+
+						## OpenTelemetry
+
+						*von Lenny*
+					</section>
 				</section>
-				<section data-background="logo.jpg" style="background: rgba(255,255,255,0.9); color: black; box-shadow: 50px 50px 100px black; border-radius: 10px">
-						<br>&nbsp;
-						<br>&nbsp;
-						<h1 style="color: black">Nächstes Meetup</h1>
-						<ul>
-							<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;29.01.2020</li>
-							<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18:00</li>
-						</ul>
-						<br>&nbsp;
-						<br>&nbsp;
+
+				<section>
+					<section data-markdown>
+					## Whiteboards
+					</section>
+					<section>
+						<img src="angebote.jpg" style="height:400px">
+					</section>
+					<section>
+						<img src="wuensche.jpg" style="height:400px">
+					</section>
+					<section>
+						<img src="feedback.jpg" style="height:400px">
+					</section>
+				</section>
+
+
+				<section>
+					<section data-markdown>
+						## Meetup Spiegel
+					</section>
+
+					<section>
+						<a href="https://tox.sexy/dynport">
+							<img src="https://www.qr-code-generator.com/phpqrcode/getCode.php?chl=http%3A%2F%2Ftox.sexy%2Fdynport" style="float: right">
+						</a>
+						<div data-markdown>
+						### Dynamic Port (FNTI)
+						
+						**Nächstes Treffen:**
+
+						Donnerstag, 30. Januar, 18:00
+						</div>
+					</section>
+
+					<section>
+						<a href="https://tox.sexy/jughjunit">
+							<img src="https://www.qr-code-generator.com/phpqrcode/getCode.php?chl=http%3A%2F%2Ftox.sexy%2Fjughjunit" style="float: right">
+						</a>
+						<div data-markdown>
+						### Java User Group Hessen
+						
+						**Nächstes Treffen:**
+
+						Donnerstag, 30. Januar, 18:00
+						</div>
+					</section>
+
+					<section>
+						<a href="https://tox.sexy/jughjunit">
+							<img src="https://www.qr-code-generator.com/phpqrcode/getCode.php?chl=http%3A%2F%2Ftox.sexy%2Fjughjunit" style="float: right">
+						</a>
+						<div data-markdown>
+						### Java User Group Hessen
+						
+						**Nächstes Treffen:**
+
+						Donnerstag, 30. Januar, 18:00
+						</div>
+					</section>
+
+					<section>
+						<a href="https://tox.sexy/webmontag32">
+							<img src="https://www.qr-code-generator.com/phpqrcode/getCode.php?chl=http%3A%2F%2Ftox.sexy%2Fwebmontag32" style="float: right">
+						</a>
+						<div data-markdown>
+						### Webmontag
+						
+						**Nächstes Treffen:**
+
+						Montag, 3. Februar, 18:00
+						</div>
+					</section>
+
+					<section>
+						<a href="https://tox.sexy/secmeetup45">
+							<img src="https://www.qr-code-generator.com/phpqrcode/getCode.php?chl=http%3A%2F%2Ftox.sexy%2Fsecmeetup45" style="float: right">
+						</a>
+						<div data-markdown>
+						### IT-Security-Kassel
+						
+						**Nächstes Treffen:**
+
+						Mittwoch, 12. Februar, 18:00
+						</div>
+					</section>
+
+					<section>
+						<a href="https://tox.sexy/datascience10">
+							<img src="http://www.qr-code-generator.com/phpqrcode/getCode.php?chl=http%3A%2F%2Ftox.sexy%2Fdatascience10" style="float: right">
+						</a>
+						<div data-markdown>
+						### Data Science Meetup
+						
+						**Nächstes Treffen:**
+
+						Mittwoch, 18. Februar, 17:30
+						</div>
+					</section>
+				</section>
+
+				<section data-state="logo_shown">
+					<img src="./kcm-logo-transparent-notext.svg" type="image/svg+xml" style="background:none; border:none;box-shadow: none">
+					<h2>Lightning Talks</h2>
+				</section>
+
+				<section data-state="logo_shown">
+					<img src="./kcm-logo-transparent.svg" style="background:none; border:none;box-shadow: none">
+				</section>
+
+				<section data-markdown>
+				## Talk No. 1
+				
+				Advanced SQL Injection Angriffe
+				
+				*von Matthias*
+				</section>
+
+				<section data-state="logo_shown">
+					<img src="./kcm-logo-transparent.svg" style="background:none; border:none;box-shadow: none">
+				</section>
+
+
+				<section data-markdown>
+				## Talk No. 2
+				
+				## OpenTelemetry
+				
+				*von Lenny*
+				</section>
+
+				<section data-state="logo_shown">
+					<img src="./kcm-logo-transparent.svg" style="background:none; border:none;box-shadow: none">
+				</section>
+
+				<section data-state="logo_shown">
+					<a href="https://tox.sexy/kcm18" style="float: right; color: black">
+						<img src="http://www.qr-code-generator.com/phpqrcode/getCode.php?chl=http%3A%2F%2Ftox.sexy%2Fkcm18"><br>
+						tox.sexy/kcm18
+					</a>
+					<img src="./kcm-logo-transparent-notext.svg" style="background:none; border:none;box-shadow: none; width: 500px;">
+					<div data-markdown>
+					### Tech Talks No. 18
+					##### 29. April 2020
+					##### 19:00 Uhr
+					</div>
+
 				</section>
 			</div>
 		</div>
+		<img class="top_logo" src="kcm-logo-transparent-notext.svg">
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
@@ -61,11 +236,17 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				controls: false,
+				progress: false,
+				center: true,
+				hash: true,
+				history: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
 		</script>
